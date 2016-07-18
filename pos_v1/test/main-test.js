@@ -1,10 +1,12 @@
 'use strict';
 
+
 describe('pos', () => {
-  let inputs;
+  let allItems = loadAllItems();
+  let tags;
 
   beforeEach(() => {
-    inputs = [
+    tags = [
       'ITEM000001',
       'ITEM000001',
       'ITEM000001',
@@ -17,7 +19,8 @@ describe('pos', () => {
     ];
   });
 
-  it('should print correct text', () => {
+
+  /*it('should print correct text', () => {
 
     spyOn(console, 'log');
 
@@ -31,7 +34,34 @@ describe('pos', () => {
 总计：51.00(元)
 节省：7.50(元)
 **********************`;
-
     expect(console.log).toHaveBeenCalledWith(expectText);
+  });*/
+
+  it('buildCartItems', () => {
+    const expectCartItems = [
+      {item: {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00
+      },
+        count: 5},
+      {item: {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00
+      },
+        count: 2},
+      {item: {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50
+      },
+        count: 3}];
+let cartItems = buildCartItems(tags, allItems);
+    expect(cartItems).toEqual(expectCartItems);
   });
 });
+
